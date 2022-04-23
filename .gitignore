@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.firebase/
+.firebaserc
+firebase.json
+dist/copy.png
+dist/icon.png

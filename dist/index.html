@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Generate</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+  </head>
+  <body>
+    <center>
+      <p>相手の名前 *</p>
+      <div>
+        <input type="text" maxlength="15" id="name" placeholder="高田健志">
+      </div> <br>
+      <p>元のURL *</p>
+      <div>
+        <input type="url" id="original" placeholder="https://example.com">
+      </div> <br>
+      <p>認証コード *</p>
+      <div>
+        <input type="number" id="code" placeholder="123456">
+      </div>
+      <p>位置情報 - 任意</p>
+    </center>
+    <input type="checkbox" id="geo">
+    <label for="geo" class="lab">※オンにすると発行されたURLがブロックされる可能性があります。また相手が利用を許可をしないと取得できません。取得できた場合は再度通知します。</label>
+    <center>
+      <button id="btn">URLを発行</button>
+      <p id="hoge"></p>
+    </center>
+    <label class="genera">発行されたURL : <textarea id="area" cols="25" rows="1"></textarea></label>
+    <img  id="copy" src="copy.png">
+    <script src="bundle.js"></script>
+  </body>
+</html>
