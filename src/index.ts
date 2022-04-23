@@ -1,6 +1,6 @@
 "use strict";
 
-import * as fun from './fetch';
+import * as fun from './asynchronous-funs';
 import load from './onload';
 import click from './onclick';
 import copied from './copy';
