@@ -1,6 +1,5 @@
 "use strict";
 
-import * as fun from './asynchronous-funs';
 import load from './onload';
 import click from './onclick';
 import copied from './copy';
@@ -16,10 +15,10 @@ const Name = <HTMLInputElement> document.getElementById("name"),
   body = document.querySelector("body"),
   url = new URL(location.href),
   params = url.searchParams,
-  userId = params.get("userId"),
-  obj = {btn, hoge, Name, original, pass, geo, area, get_pass: fun.get_pass(), lock: fun.lock(), userId}
+  userId = params.get("userId") || null,
+  elements = {btn, hoge, Name, original, pass, geo, area, userId}
 ;
 
-window.addEventListener("load", () => load(userId, body, fun.check()));
-btn.addEventListener("click", () => click(obj));
+window.addEventListener("load", () => load(userId, body));
+btn.addEventListener("click", () => click(elements));
 copy.addEventListener("click", () => copied(area));

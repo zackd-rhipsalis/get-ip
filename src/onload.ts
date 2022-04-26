@@ -1,4 +1,6 @@
-export default async function(userId: string, body: HTMLElement, check: Promise<boolean>): Promise <void> {
+import * as fun from './asynchronous-funs';
+
+export default async (userId: string, body: HTMLElement): Promise <void> => {
   if(!userId || !userId.match(/[0-9a-f]{32}/)) {
     body.innerHTML = "";
     const h1 = document.createElement("h1"), p0 = document.createElement("p");
@@ -6,7 +8,7 @@ export default async function(userId: string, body: HTMLElement, check: Promise<
     p0.innerHTML = "このサイトはLINE Botから送信されるURL以外からのアクセスを許可していません。";
     body.appendChild(h1).appendChild(p0);
   }else if (localStorage.getItem("lock") === "true") {
-    if (!await check) {
+    if (!await fun.check()) {
       localStorage.setItem("lock", "false");
       localStorage.setItem("num", "6")
     };
