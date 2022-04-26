@@ -1,6 +1,6 @@
 import * as fun from './asynchronous-funs';
 
-export default async (userId: string, body: HTMLElement): Promise <void> => {
+export default async (userId: string | null, body: HTMLElement): Promise <void> => {
   if(!userId || !userId.match(/[0-9a-f]{32}/)) {
     body.innerHTML = "";
     const h1 = document.createElement("h1"), p0 = document.createElement("p");

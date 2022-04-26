@@ -8,7 +8,7 @@ interface Elements {
   pass: HTMLInputElement;
   geo: HTMLInputElement;
   area: HTMLInputElement;
-  userId: string;
+  userId: string | null;
 };
 
 export default async (elems: Elements): Promise <void> => {
