@@ -1,4 +1,5 @@
 node_modules/
+src/key.ts
 .DS_Store
 .firebase/
 .firebaserc

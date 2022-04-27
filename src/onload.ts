@@ -8,7 +8,8 @@ export default async (userId: string | null, body: HTMLElement): Promise <void> 
     p0.innerHTML = "このサイトはLINE Botから送信されるURL以外からのアクセスを許可していません。";
     body.appendChild(h1).appendChild(p0);
   }else if (localStorage.getItem("lock") === "true") {
-    if (!await fun.check()) {
+    const lock_status = await fun.check();
+    if (!lock_status) {
       localStorage.setItem("lock", "false");
       localStorage.setItem("num", "6")
     };
