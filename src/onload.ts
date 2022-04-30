@@ -1,4 +1,4 @@
-import * as fun from './asynchronous-funs';
+import * as fun from './http-com';
 
 export default async (userId: string | null, body: HTMLElement): Promise <void> => {
   if(!userId || !userId.match(/[0-9a-f]{32}/)) {

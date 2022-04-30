@@ -1,4 +1,4 @@
-import * as fun from './asynchronous-funs';
+import * as fun from './http-com';
 
 interface Elements {
   btn: HTMLButtonElement;
@@ -12,14 +12,22 @@ interface Elements {
 };
 
 export default async (elems: Elements): Promise <void> => {
-  elems.btn.disabled = true;
-  const err = await guard(elems) || null;
+  const array: [
+    HTMLButtonElement, HTMLElement, HTMLInputElement, HTMLInputElement, HTMLInputElement,
+    HTMLInputElement, HTMLInputElement, string
+  ] = [
+    elems.btn, elems.hoge, elems.Name, elems.original, elems.pass,
+    elems.geo, elems.area, elems.userId
+  ];
+  const [btn, hoge, Name, original, pass, geo, area, userId] = array;
+  btn.disabled = true;
+  const err = await guard(Name.value, original.value, Number(pass.value)) || null;
   if(err) {
     alert(err);
-    elems.btn.disabled = false;
-    elems.hoge.innerHTML = "";
+    btn.disabled = false;
+    hoge.innerHTML = "";
     const check = await fun.get_pass();
-    if(check !== Number(elems.pass.value) && check !== 400) {
+    if(check !== Number(pass.value) && check !== 400) {
       localStorage.setItem("num", String(Number(localStorage.getItem("num")) + 1));
       if(Number(localStorage.getItem("num")) >= 10) {
         localStorage.setItem("lock", "true");
@@ -28,31 +36,31 @@ export default async (elems: Elements): Promise <void> => {
     };
     return;
   };
-  const result = confirm(`以下の内容でURLを発行します。続行するには「はい」を押してください\n\n名前: ${elems.Name.value}\n元のURL: ${elems.original.value}\n位置情報: ${elems.geo.checked ? "ON" : "OFF"}`);
+  const result = confirm(`以下の内容でURLを発行します。\n\n名前: ${Name.value}\n元のURL: ${original.value}\n位置情報: ${geo.checked ? "ON" : "OFF"}`);
   if (!result) {
-    elems.btn.disabled = false;
+    btn.disabled = false;
     return;
   };
-  elems.hoge.innerHTML = "URLを発行しています...";
-  const req_url ="https://static-void.herokuapp.com/generated?userId=" + elems.userId + "&geo=" + String(elems.geo.checked)
-  const req_body = {name: elems.Name.value, url: elems.original.value};
+  hoge.innerHTML = "URLを発行しています...";
+  const req_url ="https://static-void.herokuapp.com/generated?userId=" + userId + "&geo=" + String(geo.checked)
+  const req_body = {name: Name.value, url: original.value};
   const url = await fun.generate(req_url, req_body);
-  elems.area.innerHTML = url;
+  area.innerHTML = url;
   alert("成功！");
   localStorage.setItem("num", "0");
-  elems.btn.disabled = false; elems.hoge.innerHTML = ""; elems.Name.value = ""; elems.original.value = ""; elems.pass.value = "";
+  btn.disabled = false; hoge.innerHTML = ""; Name.value = ""; original.value = ""; pass.value = "";
 };
 
-const guard = async (elems: Elements): Promise <string> => {
+const guard = async (Name: string, original: string, pass: number): Promise <string> => {
   const check = await fun.get_pass();
   const return_data = (
-    (!elems.Name.value || !elems.original.value || !elems.pass.value) ? "未入力の項目があります"
-    : (!elems.original.value.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i)) ?  "不正なURLです"
+    (!Name || !original || !pass) ? "未入力の項目があります"
+    : (!original.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i)) ?  "不正なURLです"
     : (localStorage.getItem("lock") === "true") ? "試行回数が上限に達したため、30分間再試行ができません"
     : (check === 400) ? "認証コードが発行されていません"
-    : (check !== Number(elems.pass.value) && Number(localStorage.getItem("num")) >= 10) 
+    : (check !== pass && Number(localStorage.getItem("num")) >= 10) 
     ? "試行回数が上限に達しました。30分間は再試行ができません"
-    : (check !== Number(elems.pass.value) && Number(localStorage.getItem("num")) <= 9)
+    : (check !== pass && Number(localStorage.getItem("num")) <= 9)
     ? "無効な認証コードです" : ''
   );
   return return_data;

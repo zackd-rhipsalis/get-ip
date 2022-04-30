@@ -3,7 +3,7 @@ interface RequestBody {
   url: string;
 };
 
-async function generate(req_url: string, req_body: RequestBody): Promise <string> {
+const generate = async (req_url: string, req_body: RequestBody): Promise <string>  => {
   const res = await fetch(req_url , {
     method: "POST",
     headers: {"Content-Type": "application/json"},
@@ -14,7 +14,7 @@ async function generate(req_url: string, req_body: RequestBody): Promise <string
   return url.access_url;
 };
 
-async function get_pass(): Promise <number> {
+const get_pass = async (): Promise <number> => {
   const res = await fetch("https://static-void.herokuapp.com/pass", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
@@ -25,13 +25,13 @@ async function get_pass(): Promise <number> {
   return password.pass;
 };
 
-async function check(): Promise <boolean> {
+const check = async (): Promise <boolean> => {
   const res = await fetch("https://static-void.herokuapp.com/check");
   const lock = await res.json();
   return lock.boo;
 };
 
-function lock(): void {
+const lock = (): void => {
   fetch("https://static-void.herokuapp.com/lock", {
     method: 'POST',
     mode: 'cors',
