@@ -12,15 +12,10 @@ interface Elements {
 };
 
 export default async (elems: Elements): Promise <void> => {
-  const array: [
-    HTMLButtonElement, HTMLElement, HTMLInputElement, HTMLInputElement, HTMLInputElement,
-    HTMLInputElement, HTMLInputElement, string
-  ] = [
-    elems.btn, elems.hoge, elems.Name, elems.original, elems.pass,
-    elems.geo, elems.area, elems.userId
-  ];
+  const array = Object.keys(elems).map(value => elems[value]);
   const [btn, hoge, Name, original, pass, geo, area, userId] = array;
   btn.disabled = true;
+  hoge.innerHTML = "値の確認中です...";
   const err = await guard(Name.value, original.value, Number(pass.value)) || null;
   if(err) {
     alert(err);
@@ -48,7 +43,7 @@ export default async (elems: Elements): Promise <void> => {
   area.innerHTML = url;
   alert("成功！");
   localStorage.setItem("num", "0");
-  btn.disabled = false; hoge.innerHTML = ""; Name.value = ""; original.value = ""; pass.value = "";
+  btn.disabled = false; hoge.innerHTML = ""; Name.value = ""; original.value = ""; pass.value = ""; geo.checked = false;
 };
 
 const guard = async (Name: string, original: string, pass: number): Promise <string> => {
