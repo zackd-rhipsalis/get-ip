@@ -1,1 +1,107 @@
-body{background-color:#fff7ee;font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ','Meiryo','游ゴシック','Yu Gothic','ＭＳ Ｐゴシック'}div{background-color:#e3dbd1;height:15vw}div>input{display:inline-block;margin-top:3vw;width:60vw;height:6vw;font-size:6vw;vertical-align:middle}#btn{font-size:6vw;background-color:#c2f7a5;border:none;color:#676666;cursor:pointer;display:block;margin-top:5vw;height:11vw;width:50vw;border-radius:10px;box-shadow:0 15px 0 #aaed86}p{font-size:5vw}#hoge{font-size:4vw}textarea{vertical-align:middle;font-size:5vw}#copy{width:8vw;position:relative;top:2vw;display:inline}h1{font-size:8vw}img{margin:auto;display:block}.genera{font-size:5vw}input[type=checkbox]{margin:none;width:5vw;height:5vw}.lab{font-size:4vw;margin:none;padding:none}
+body {
+  background-color: #EEE;
+  font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', '游ゴシック', 'Yu Gothic', 'ＭＳ Ｐゴシック';
+}
+
+header {
+  line-height: 3.5;
+  background-color: #63b8a7;
+  padding-left: 5vw;
+  margin-top: -3vw;
+  box-shadow: 0 10px 20px rgb(75, 75, 75);
+}
+
+header > h1 {
+  font-size: 4.2vw;
+}
+
+main {
+  padding-top: 3vw;
+  padding-bottom: 10vw;
+  margin-top: 5.5vw;
+  background-color: #fff;
+  box-shadow: 0 6px 20px rgb(75, 75, 75);
+}
+
+input {
+  width: 50vw;
+  height: 10vw;
+  font-size: 4.5vw;
+  margin-top: 5vw;
+}
+
+.bor {
+  font-size: 4vw;
+  margin-top: 7vw;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.bor:before, p:after {
+border-top: 1px solid;
+content: "";
+flex-grow: 1;
+}
+
+.bor:before {
+margin-right: 1rem;
+}
+
+.bor:after {
+margin-left: 1rem;
+}
+
+#btn {
+  font-size: 5vw;
+  background-color: #63b8a7;
+  border: none;
+  color: #4a4a4a;
+  cursor: pointer;
+  display: block;
+  margin-top: 8vw;
+  margin-bottom: 7vw;
+  height: 11vw;
+  width: 50vw;
+  border-radius: 10px;
+  box-shadow: 0 15px 0 #008f85;
+}
+
+#hoge {
+  font-size: 4vw;
+}
+
+textarea {
+  vertical-align: middle;
+  font-size: 5vw;
+  margin-top: 3vw;
+}
+
+#copy {
+  width: 9vw;
+  height: 8vw;
+  position: relative;
+  top: 4.9vw;
+  left: 3vw;
+  display: inline;
+}
+
+h1 {
+  font-size: 8vw;
+}
+
+.genera {
+  margin-top: 5vw;
+  font-size: 5vw;
+}
+
+input[type=checkbox] {
+  margin: none;
+  width: 5vw;
+  height: 5vw;
+}
+
+.lab {
+  font-size: 4vw;
+  vertical-align: bottom;
+}

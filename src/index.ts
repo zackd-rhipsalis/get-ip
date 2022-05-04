@@ -13,6 +13,7 @@ const Name = <HTMLInputElement> document.getElementById("name"),
   copy = <HTMLImageElement> document.getElementById("copy"),
   hoge = document.getElementById("hoge"),
   body = document.querySelector("body"),
+  h1 = document.querySelector('h1'),
   url = new URL(location.href),
   params = url.searchParams,
   userId = params.get("userId") || null,
@@ -22,3 +23,4 @@ const Name = <HTMLInputElement> document.getElementById("name"),
 window.addEventListener("load", () => load(userId, body));
 btn.addEventListener("click", () => click(elements));
 copy.addEventListener("click", () => copied(area));
+h1.onclick = () => location.reload();

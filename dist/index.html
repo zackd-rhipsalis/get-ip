@@ -2,34 +2,33 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Generate</title>
+    <title>IP CATCHER</title>
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body>
-    <center>
-      <p>名前 *</p>
-      <div>
-        <input type="text" maxlength="15" id="name" placeholder="高田健志">
-      </div> <br>
-      <p>元のURL *</p>
-      <div>
-        <input type="url" id="original" placeholder="https://example.com">
-      </div> <br>
-      <p>認証コード *</p>
-      <div>
-        <input type="number" id="code" placeholder="123456">
-      </div>
-      <p>位置情報</p>
-    </center>
-    <input type="checkbox" id="geo">
-    <label for="geo" class="lab">※オンにすると発行されたURLがブロックされる可能性があります。また相手が利用を許可をしないと取得できません。取得できた場合は再度通知します。</label>
-    <center>
-      <button id="btn">URLを発行</button>
-      <p id="hoge"></p>
-    </center>
-    <label class="genera">発行されたURL : <textarea id="area" cols="25" rows="1"></textarea></label>
-    <img  id="copy" src="copy.png">
+    <header>
+      <h1>IP CATCHER</h1>
+    </header>
+    <main>
+      <center>
+        <p class="bor">必須項目</p>
+        <input type="text" maxlength="15" id="name" placeholder="名前"> <br>
+        <input type="url" id="original" placeholder="オリジナルURL"> <br>
+        <input type="number" id="code" placeholder="認証コード"> <br>
+        <p class="bor">任意オプション</p>
+      </center>
+      <input type="checkbox" id="geo">
+      <label for="geo" class="lab">位置情報 ※相手が許可をしないと取得できません</label>
+      <center>
+        <button id="btn">URLを発行</button>
+        <p id="hoge"></p>
+        <hr noshade>
+        <div class="genera">発行されたURL</div>
+      </center>
+      <textarea id="area" cols="25" rows="1"></textarea>
+      <img  id="copy" src="copy.png">
+    </main>
     <script src="bundle.js"></script>
   </body>
 </html>
