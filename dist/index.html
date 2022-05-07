@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body>
-    <header>
+    <header onclick="reload()">
       <h1>IP CATCHER</h1>
     </header>
     <main>
@@ -29,6 +29,11 @@
       <textarea id="area" cols="25" rows="1"></textarea>
       <img  id="copy" src="copy.png">
     </main>
-    <script src="bundle.js"></script>
+    <script type="text/javascript"> 
+      function reload() {
+        location.href = location.href
+      };
+    </script>
+    <script src="bundle.js" type="text/javascript"></script>
   </body>
 </html>

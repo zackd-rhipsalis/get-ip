@@ -87,12 +87,17 @@ textarea {
 }
 
 h1 {
-  font-size: 8vw;
+  font-size: 6vw;
+}
+
+p {
+  font-size: 4vw;
 }
 
 .genera {
   margin-top: 5vw;
   font-size: 5vw;
+  font-weight: bold;
 }
 
 input[type=checkbox] {
