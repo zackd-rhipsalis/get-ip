@@ -49,16 +49,23 @@ export default async (elems: Elements): Promise <void> => {
 };
 
 const guard = async (Name: string, original: string, pass: number): Promise <string> => {
-  const check = await fun.get_pass();
-  const return_data = (
+  const illegal = (
     (!Name || !original || !pass) ? "未入力の必須項目があります"
-    : (!original.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i)) ?  "不正なURLです"
+    : (!original.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i)) ? "不正なURLです"
     : (localStorage.getItem("lock") === "true") ? "試行回数が上限に達したため、30分間再試行ができません"
-    : (check === 400) ? "認証コードが発行されていません"
-    : (check !== pass && Number(localStorage.getItem("num")) >= 10) 
-    ? "試行回数が上限に達しました。30分間は再試行ができません"
-    : (check !== pass && Number(localStorage.getItem("num")) <= 9)
-    ? "無効な認証コードです" : ''
+    : ''
   );
-  return return_data;
+  if(illegal) {
+    return illegal;
+  } else {
+    const check = await fun.get_pass();
+    const stupid = (
+      (check === 400) ? "認証コードが発行されていません"
+      : (check !== pass && Number(localStorage.getItem("num")) >= 10) 
+      ? "試行回数が上限に達しました。30分間は再試行ができません"
+      : (check !== pass && Number(localStorage.getItem("num")) <= 9)
+      ? "無効な認証コードです" : ''
+    );
+    return stupid;
+  };
 };
