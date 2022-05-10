@@ -86,12 +86,16 @@ textarea {
   display: inline;
 }
 
-h1 {
+#moh {
   font-size: 6vw;
 }
 
-p {
+#mop {
   font-size: 4vw;
+}
+
+#pc {
+  font-size: 25px;
 }
 
 .genera {

@@ -1,9 +1,17 @@
 import * as fun from './http-com';
 
 export default async (userId: string | null, body: HTMLElement): Promise <void> => {
-  if(!userId || !userId.match(/[0-9a-f]{32}/)) {
+  if(!navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
     body.innerHTML = "";
     const h1 = document.createElement("h1"), p = document.createElement("p");
+    h1.id = "pc"; p.id = "pc";
+    h1.innerHTML = "ERROR";
+    p.innerHTML = "このサイトはPCからのアクセスを許可していません。";
+    body.appendChild(h1).appendChild(p);
+  }else if(!userId || !userId.match(/[0-9a-f]{32}/)) {
+    body.innerHTML = "";
+    const h1 = document.createElement("h1"), p = document.createElement("p");
+    h1.id = "moh"; p.id = "mop";
     h1.innerHTML = "ERROR";
     p.innerHTML = "このサイトはLINE Botから送信されるURL以外からのアクセスを許可していません。";
     body.appendChild(h1).appendChild(p);
