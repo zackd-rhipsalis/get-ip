@@ -15,10 +15,9 @@ const Name = <HTMLInputElement> document.getElementById("name"),
   body = document.querySelector("body"),
   url = new URL(location.href),
   params = url.searchParams,
-  userId = params.get("userId") || null,
-  elements = {btn, hoge, Name, original, pass, geo, area, userId}
+  userId = params.get("userId") || null
 ;
 
 window.addEventListener("load", () => load(userId, body));
-btn.addEventListener("click", () => click(elements));
+btn.addEventListener("click", () => click(btn, hoge, Name, original, pass, geo, area, userId));
 copy.addEventListener("click", () => copied(area));

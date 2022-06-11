@@ -3,4 +3,4 @@ export default (area: HTMLInputElement): void => {
   area.select();
   document.execCommand("copy");
   alert("コピーしました");
-};
+}

@@ -5,7 +5,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "strictNullChecks": false,
-    "suppressImplicitAnyIndexErrors": true //TypeScriptでmapメソッドを使い、引数に渡ってきたkeyを変数化、その変数をブラケット記法で記述する上で本当にどうしようもないエラーが発生する為、致し方なくany許容...
+    "strictNullChecks": false
   }
 }
