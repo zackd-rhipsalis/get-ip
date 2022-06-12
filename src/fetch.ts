@@ -1,9 +1,11 @@
-const post = async <T, U> (req_url: string, req_body: T): Promise <U> => {
-  const res = await fetch(req_url , {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(req_body),
-    mode: "cors"
+type Post = <T, U> (url: string, body: T) => Promise <U>;
+
+const post: Post = async (url, body) => {
+  const res = await fetch(url , {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body),
+    mode: 'cors'
   });
 
   const json = await res.json();
