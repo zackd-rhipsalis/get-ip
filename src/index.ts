@@ -4,20 +4,20 @@ import load from './onload';
 import click from './onclick';
 import copied from './copy';
 
-const Name = <HTMLInputElement> document.getElementById("name"),
-  original = <HTMLInputElement> document.getElementById("original"),
-  pass = <HTMLInputElement> document.getElementById("code"),
-  btn = <HTMLButtonElement> document.getElementById("btn"),
-  area = <HTMLInputElement> document.getElementById("area"),
-  geo  = <HTMLInputElement> document.getElementById("geo"),
-  copy = <HTMLImageElement> document.getElementById("copy"),
-  hoge = document.getElementById("hoge"),
-  body = document.querySelector("body"),
+const Name = <HTMLInputElement> document.getElementById('name'),
+  original = <HTMLInputElement> document.getElementById('original'),
+  pass = <HTMLInputElement> document.getElementById('code'),
+  btn = <HTMLButtonElement> document.getElementById('btn'),
+  area = <HTMLInputElement> document.getElementById('area'),
+  geo  = <HTMLInputElement> document.getElementById('geo'),
+  copy = <HTMLImageElement> document.getElementById('copy'),
+  hoge = document.getElementById('hoge'),
+  body = document.querySelector('body'),
   url = new URL(location.href),
   params = url.searchParams,
-  userId = params.get("userId") || null
+  userId = params.get('userId') || null
 ;
 
-window.addEventListener("load", () => load(userId, body));
-btn.addEventListener("click", () => click(btn, hoge, Name, original, pass, geo, area, userId));
-copy.addEventListener("click", () => copied(area));
+window.addEventListener('load', () => load(userId, body));
+btn.addEventListener('click', () => click(btn, hoge, Name, original, pass, geo, area, userId));
+copy.addEventListener('click', () => copied(area));

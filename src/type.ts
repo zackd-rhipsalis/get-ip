@@ -1,4 +1,4 @@
-type Args = [
+type Args = readonly [
   HTMLButtonElement,
   HTMLElement, 
   HTMLInputElement,
@@ -10,20 +10,20 @@ type Args = [
 ];
 
 type GenerateBody = {
- name: string;
- url: string; 
+ readonly name: string;
+ readonly url: string; 
 }
 
 type GenerateResponse = {
-  access_url: string;
+  readonly access_url: string;
 }
 
-type GetPassBody = {
-  text: string;
+type ResponseOnly = {
+  readonly text: 'ぴやっほゃ' | 'fucker';
 }
 
 type GetPassResponse = {
-  pass: number;
+  readonly pass: number;
 }
 
-export { Args, GenerateBody, GenerateResponse, GetPassBody, GetPassResponse };
+export { Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse };

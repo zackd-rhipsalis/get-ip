@@ -8,22 +8,23 @@ const post: Post = async (url, body) => {
     mode: 'cors'
   });
 
-  const json = await res.json();
-  return json;
+  const json = await res.json() || null;
+
+  if (json) return json;
 }
 
 const check = async (): Promise <boolean> => {
-  const res = await fetch("https://static-void.herokuapp.com/check");
+  const res = await fetch('https://static-void.herokuapp.com/check');
   const lock = await res.json();
   return lock.boo;
 }
 
 const lock = (): void => {
-  fetch("https://static-void.herokuapp.com/lock", {
+  fetch('https://static-void.herokuapp.com/lock', {
     method: 'POST',
     mode: 'cors',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({text: "fucker"})
+    body: JSON.stringify({text: 'fucker'})
   });
 }
 

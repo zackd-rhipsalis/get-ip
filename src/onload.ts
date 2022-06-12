@@ -3,7 +3,7 @@ import * as fun from './fetch';
 export default async (userId: string | null, body: HTMLElement): Promise <void> => {
   if(!(/iPhone|Android.+Mobile/).test(navigator.userAgent)) {
     body.innerHTML = '';
-    const h1 = document.createElement("h1"), p = document.createElement("p");
+    const h1 = document.createElement('h1'), p = document.createElement('p');
 
     h1.id = 'pc'; p.id = 'pc'; h1.innerHTML = 'ERROR';
     p.innerHTML = '当サイトはPCからのアクセスを許可しておりません。';

@@ -1,5 +1,5 @@
 import * as fun from './fetch';
-import {Args, GenerateBody, GenerateResponse, GetPassBody, GetPassResponse } from './type';
+import {Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse } from './type';
 
 export default async (...args: Args): Promise <void> => {
   const [btn, hoge, Name, original, pass, geo, area, userId] = args;
@@ -13,15 +13,18 @@ export default async (...args: Args): Promise <void> => {
     btn.disabled = false;
     hoge.innerHTML = '';
     
-    const url = 'https://static-void.herokuapp.com/pass', body = {text: 'ぴやっほゃ'};
-    const check = (await fun.post<GetPassBody, GetPassResponse>(url, body)).pass;
+    const url = 'https://static-void.herokuapp.com/pass',
+    body = {text: 'ぴやっほゃ'} as const;
+    const check = (await fun.post<ResponseOnly, GetPassResponse>(url, body)).pass;
 
     if(check !== Number(pass.value) && check !== 400) {
       localStorage.setItem('num', String(Number(localStorage.getItem('num')) + 1));
   
       if(Number(localStorage.getItem('num')) >= 10) {
         localStorage.setItem('lock', 'true');
-        fun.lock();
+        const url = 'https://static-void.herokuapp.com/lock',
+        body = {text: 'fucker'} as const;
+        fun.post<ResponseOnly, void>(url, body);
       }
     }
     return;
@@ -61,8 +64,9 @@ const guard = async (Name: string, original: string, pass: number): Promise <str
   if(illegal) {
     return illegal;
   } else {
-    const url = 'https://static-void.herokuapp.com/pass', body = {text: 'ぴやっほゃ'};
-    const check = (await fun.post<GetPassBody, GetPassResponse>(url, body)).pass;
+    const url = 'https://static-void.herokuapp.com/pass',
+    body = {text: 'ぴやっほゃ'} as const;
+    const check = (await fun.post<ResponseOnly, GetPassResponse>(url, body)).pass;
   
     const stupid = (
       (check === 400) ? '認証コードが発行されていません'
