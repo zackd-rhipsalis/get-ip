@@ -19,14 +19,5 @@ const check = async (): Promise <boolean> => {
   return lock.boo;
 }
 
-const lock = (): void => {
-  fetch('https://static-void.herokuapp.com/lock', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({text: 'fucker'})
-  });
-}
 
-
-export { post, check, lock };
+export { post, check };
