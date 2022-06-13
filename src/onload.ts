@@ -1,4 +1,4 @@
-import * as fun from './fetch';
+import { check } from './fetch';
 
 export default async (userId: string | null, body: HTMLElement): Promise <void> => {
   if(!(/iPhone|Android.+Mobile/).test(navigator.userAgent)) {
@@ -19,7 +19,7 @@ export default async (userId: string | null, body: HTMLElement): Promise <void> 
 
     body.appendChild(h1).appendChild(p);
   } else if (localStorage.getItem('lock') === 'true') {
-    const lock_status = await fun.check();
+    const lock_status = await check();
   
     if (!lock_status) {
       localStorage.setItem('lock', 'false');

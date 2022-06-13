@@ -1,7 +1,7 @@
-import * as fun from './fetch';
-import {Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse } from './type';
+import { post } from './fetch';
+import * as types from './type';
 
-export default async (...args: Args): Promise <void> => {
+export default async (...args: types.Args): Promise <void> => {
   const [btn, hoge, Name, original, pass, geo, area, userId] = args;
   btn.disabled = true;
   hoge.innerHTML = '確認中です...';
@@ -15,7 +15,7 @@ export default async (...args: Args): Promise <void> => {
     
     const url = 'https://static-void.herokuapp.com/pass',
     body = {text: 'ぴやっほゃ'} as const;
-    const check = (await fun.post<ResponseOnly, GetPassResponse>(url, body)).pass;
+    const check = (await post<types.ResponseOnly, types.GetPassResponse>(url, body)).pass;
 
     if(check !== Number(pass.value) && check !== 400) {
       localStorage.setItem('num', String(Number(localStorage.getItem('num')) + 1));
@@ -24,7 +24,7 @@ export default async (...args: Args): Promise <void> => {
         localStorage.setItem('lock', 'true');
         const url = 'https://static-void.herokuapp.com/lock',
         body = {text: 'fucker'} as const;
-        fun.post<ResponseOnly, void>(url, body);
+        post<types.ResponseOnly, void>(url, body);
       }
     }
     return;
@@ -42,7 +42,7 @@ export default async (...args: Args): Promise <void> => {
 
   const req_url = 'https://static-void.herokuapp.com/generated?userId=' + userId + '&geo=' + String(geo.checked);
   const req_body = {name: Name.value, url: original.value};
-  const url = (await fun.post<GenerateBody, GenerateResponse>(req_url, req_body)).access_url;
+  const url = (await post<types.GenerateBody, types.GenerateResponse>(req_url, req_body)).access_url;
   area.innerHTML = url;
 
   const url_check = url.match(/static/) ? '\n※短縮URLのリクエスト上限に達した為、発行したURLを短縮できませんでした' : '';
@@ -66,7 +66,7 @@ const guard = async (Name: string, original: string, pass: number): Promise <str
   } else {
     const url = 'https://static-void.herokuapp.com/pass',
     body = {text: 'ぴやっほゃ'} as const;
-    const check = (await fun.post<ResponseOnly, GetPassResponse>(url, body)).pass;
+    const check = (await post<types.ResponseOnly, types.GetPassResponse>(url, body)).pass;
   
     const stupid = (
       (check === 400) ? '認証コードが発行されていません'

@@ -4,13 +4,13 @@ import load from './onload';
 import click from './onclick';
 import copied from './copy';
 
-const Name = <HTMLInputElement> document.getElementById('name'),
-  original = <HTMLInputElement> document.getElementById('original'),
-  pass = <HTMLInputElement> document.getElementById('code'),
-  btn = <HTMLButtonElement> document.getElementById('btn'),
-  area = <HTMLInputElement> document.getElementById('area'),
-  geo  = <HTMLInputElement> document.getElementById('geo'),
-  copy = <HTMLImageElement> document.getElementById('copy'),
+const Name = document.getElementById('name') as HTMLInputElement,
+  original = document.getElementById('original') as HTMLInputElement,
+  pass = document.getElementById('code') as HTMLInputElement,
+  btn = document.getElementById('btn') as HTMLButtonElement,
+  area = document.getElementById('area') as HTMLInputElement,
+  geo  = document.getElementById('geo') as HTMLInputElement,
+  copy = document.getElementById('copy') as HTMLImageElement,
   hoge = document.getElementById('hoge'),
   body = document.querySelector('body'),
   url = new URL(location.href),
