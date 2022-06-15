@@ -15,7 +15,7 @@ const Name = document.getElementById('name') as HTMLInputElement,
   body = document.querySelector('body'),
   url = new URL(location.href),
   params = url.searchParams,
-  userId = params.get('userId') || null
+  userId = params.get('userId')
 ;
 
 window.addEventListener('load', () => load(userId, body));

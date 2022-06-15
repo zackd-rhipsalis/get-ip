@@ -1,23 +1,22 @@
-type Post = <T, U> (url: string, body: T) => Promise <U>;
+export default class Fetch <T, U> {
 
-const post: Post = async (url, body) => {
-  const res = await fetch(url , {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(body),
-    mode: 'cors'
-  });
+  constructor(private url: string, private body: T) {};
 
-  const json = await res.json() || null;
+  public async post(): Promise <U> {
+    const res = await fetch(this.url , {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.body),
+      mode: 'cors'
+    });
 
-  if (json) return json;
+    const json = await res.json() as U;
+    if (json) return json;
+  }
+
+  public static async check(): Promise <boolean> {
+    const res = await fetch('https://static-void.herokuapp.com/check');
+    const lock = await res.json();
+    return lock.boo;
+  }
 }
-
-const check = async (): Promise <boolean> => {
-  const res = await fetch('https://static-void.herokuapp.com/check');
-  const lock = await res.json();
-  return lock.boo;
-}
-
-
-export { post, check };

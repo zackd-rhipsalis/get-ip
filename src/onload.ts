@@ -1,6 +1,6 @@
-import { check } from './fetch';
+import Fetch from './fetch';
 
-export default async (userId: string | null, body: HTMLElement): Promise <void> => {
+export default async (userId: string, body: HTMLElement): Promise <void> => {
   if(!(/iPhone|Android.+Mobile/).test(navigator.userAgent)) {
     body.innerHTML = '';
     const h1 = document.createElement('h1'), p = document.createElement('p');
@@ -19,8 +19,7 @@ export default async (userId: string | null, body: HTMLElement): Promise <void> 
 
     body.appendChild(h1).appendChild(p);
   } else if (localStorage.getItem('lock') === 'true') {
-    const lock_status = await check();
-  
+    const lock_status = await Fetch.check();
     if (!lock_status) {
       localStorage.setItem('lock', 'false');
       localStorage.setItem('num', '6');
