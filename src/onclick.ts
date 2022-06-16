@@ -13,19 +13,20 @@ export default async (...args: types.Args): Promise <void> => {
     btn.disabled = false;
     hoge.innerHTML = '';
 
-    const url = 'https://static-void.herokuapp.com/pass',
-    body = {text: 'ぴやっほゃ'} as const;
-  
+    const url = 'https://static-void.herokuapp.com/pass';
+    const body = {text: 'ぴやっほゃ'} as const;
+
     const saucer = new Fetch<types.ResponseOnly, types.GetPassResponse>(url, body);
     const check = (await saucer.post()).pass;
   
     if(check !== Number(pass.value) && check !== 400) {
       localStorage.setItem('num', String(Number(localStorage.getItem('num')) + 1));
-  
+
       if(Number(localStorage.getItem('num')) >= 10) {
         localStorage.setItem('lock', 'true');
-        const url = 'https://static-void.herokuapp.com/lock',
-        body = {text: 'fucker'} as const;
+
+        const url = 'https://static-void.herokuapp.com/lock';
+        const body = {text: 'fucker'} as const;
 
         const lock = new Fetch <types.ResponseOnly, void>(url, body);
         lock.post();
@@ -69,8 +70,8 @@ const guard = async (Name: string, original: string, pass: number): Promise <str
 
   if(illegal) return illegal;
   else {
-    const url = 'https://static-void.herokuapp.com/pass',
-    body = {text: 'ぴやっほゃ'} as const;
+    const url = 'https://static-void.herokuapp.com/pass';
+    const body = {text: 'ぴやっほゃ'} as const;
 
     const saucer = new Fetch<types.ResponseOnly, types.GetPassResponse>(url, body);
     const check = (await saucer.post()).pass;
