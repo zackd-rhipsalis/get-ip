@@ -7,7 +7,7 @@ type Args = readonly [
   HTMLInputElement,
   HTMLInputElement, 
   string
-];
+]
 
 type GenerateBody = {
  readonly name: string;
@@ -26,4 +26,4 @@ type GetPassResponse = {
   readonly pass: number;
 }
 
-export { Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse };
+export { Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse }

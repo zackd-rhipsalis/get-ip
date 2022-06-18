@@ -1,8 +1,12 @@
 export default class Fetch <T, U> {
 
-  constructor(private url: string, private body: T) { };
+  constructor(
+    private readonly url: string,
+    private readonly body: T
+  ) {};
 
   public async post(): Promise <U> {
+
     const res = await fetch(this.url,
       {
         method: 'POST',
@@ -18,7 +22,7 @@ export default class Fetch <T, U> {
 
   public static async check(): Promise <boolean> {
     const res = await fetch('https://static-void.herokuapp.com/check');
-    const lock = await res.json();
+    const lock = await res.json() as {readonly boo: boolean};
     return lock.boo;
   }
 }
