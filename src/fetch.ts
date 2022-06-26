@@ -6,7 +6,6 @@ export default class Fetch <T, U> {
   ) {};
 
   public async post(): Promise <U> {
-
     const res = await fetch(this.url,
       {
         method: 'POST',
@@ -22,7 +21,7 @@ export default class Fetch <T, U> {
 
   public static async check(): Promise <boolean> {
     const res = await fetch('https://static-void.herokuapp.com/check');
-    const lock = await res.json() as {readonly boo: boolean};
-    return lock.boo;
+    const { boo } = await res.json() as {readonly boo: boolean};
+    return boo;
   }
 }

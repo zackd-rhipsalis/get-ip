@@ -26,4 +26,4 @@ type GetPassResponse = {
   readonly pass: number;
 }
 
-export { Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse }
+export type { Args, GenerateBody, GenerateResponse, ResponseOnly, GetPassResponse }

@@ -1,5 +1,5 @@
 import Fetch from './fetch';
-import * as types from './type';
+import type * as types from './type';
 
 export default async (...args: types.Args): Promise <void> => {
   const [btn, hoge, name, original, pass, geo, area, userId] = args;
