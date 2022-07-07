@@ -49,20 +49,20 @@ export default async (...args: types.Args): Promise <void> => {
   const req_body = {name: name.value, url: original.value};
 
   const saucer = new Fetch<types.GenerateBody, types.GenerateResponse>(req_url, req_body);
-  const url = (await saucer.post()).access_url;
+  const { access_url } = await saucer.post();
 
-  area.innerHTML = url;
+  area.innerHTML = access_url;
 
-  const url_check = url.match(/static/) ? '\n※短縮URLのリクエスト上限に達した為、発行したURLを短縮できませんでした' : '';
+  const url_check = access_url.match(/static/) ? '\n※短縮URLのリクエスト上限に達した為、発行したURLを短縮できませんでした' : '';
   alert('成功！' + url_check);
   localStorage.setItem('num', '0');
   btn.disabled = false; hoge.innerHTML = ''; name.value = ''; 
   original.value = ''; pass.value = ''; geo.checked = false;
 }
 
-const guard = async (name: string, original: string, pass: number): Promise <string> => {
+const guard = async (name: string, original: string, passValue: number): Promise <string> => {
   const illegal = (
-    (!name || !original || !pass) ? '未入力の必須項目があります'
+    (!name || !original || !passValue) ? '未入力の必須項目があります'
     : (!(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i).test(original)) ? '不正なURLです'
     : (localStorage.getItem('lock') === 'true') ? '試行回数が上限に達したため、30分間再試行ができません'
     : ''
@@ -74,13 +74,13 @@ const guard = async (name: string, original: string, pass: number): Promise <str
     const body = {text: 'ぴやっほゃ'} as const;
 
     const saucer = new Fetch<types.ResponseOnly, types.GetPassResponse>(url, body);
-    const check = (await saucer.post()).pass;
+    const { pass } = await saucer.post();
 
     const stupid = (
-      (check === 400) ? '認証コードが発行されていません'
-      : (check !== pass && Number(localStorage.getItem('num')) >= 10)
+      (pass === 400) ? '認証コードが発行されていません'
+      : (pass !== passValue && Number(localStorage.getItem('num')) >= 10)
       ? '試行回数が上限に達しました。30分間は再試行ができません'
-      : (check !== pass && Number(localStorage.getItem('num')) <= 9)
+      : (pass !== passValue&& Number(localStorage.getItem('num')) <= 9)
       ? '無効な認証コードです' : ''
     );
 
